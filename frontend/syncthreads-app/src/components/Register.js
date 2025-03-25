@@ -11,7 +11,7 @@ const Register = () => {
     e.preventDefault();
     const response = await register(userData);
     if (response.success) {
-      navigate("/");
+      navigate("/login");
     } else {
       alert(response.message || "Registration failed");
     }
