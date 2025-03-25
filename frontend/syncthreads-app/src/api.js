@@ -26,7 +26,7 @@ export const fetchMapData = async (token, location) => {
 
 export const register = async (username, password) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/auth/register`, {
+    const response = await fetch(`${API_BASE_URL}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
