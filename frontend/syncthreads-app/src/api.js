@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = "https://syncthreads-backend-hvh6.onrender.com/api";
 
 export const login = async (username, password) => {
   const response = await axios.post(`${API_BASE_URL}/auth/login`, {
@@ -26,7 +26,7 @@ export const fetchMapData = async (token, location) => {
 
 export const register = async (username, password) => {
   try {
-    const response = await fetch("http://localhost:5000/api/auth/register", {
+    const response = await axios.post(`${API_BASE_URL}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
