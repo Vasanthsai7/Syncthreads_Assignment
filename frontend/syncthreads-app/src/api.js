@@ -25,18 +25,16 @@ export const fetchMapData = async (token, location) => {
 };
 
 export const register = async (username, password) => {
-  try {
-    const response = await fetch(`${API_BASE_URL}/auth/register`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
+    try {
+        const response = await axios.post(`${API_BASE_URL}/auth/register`, {
+            username,
+            password
+        });
 
-    if (!response.ok) throw new Error("Registration failed");
-
-    return response.json();
-  } catch (error) {
-    console.error("Registration API Error:", error);
-    throw error;
-  }
+        return response.data;
+    } catch (error) {
+        console.error("Registration API Error:", error.response?.data || error.message);
+        throw new Error(error.response?.data?.error || "Registration failed");
+    }
 };
+
