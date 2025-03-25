@@ -9,13 +9,22 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const response = await register(userData);
-    if (response.success) {
-      navigate("/auth/login");
-    } else {
-      alert(response.message || "Registration failed");
+    setError(""); 
+
+    try {
+      const response = await register(userData.username, userData.password);
+
+      if (response.success) {
+        alert("Registration successful! Redirecting to login...");
+        navigate("/login"); // Redirect to login after successful registration
+      } else {
+        setError(response.message || "Registration failed");
+      }
+    } catch (err) {
+      setError("Error registering user. Try again.");
     }
   };
+
 
   return (
     <div className="auth-container">
